@@ -1,0 +1,69 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct node
+{
+    int value;
+    node *next;
+}*top=NULL;
+void inserte()
+{
+    int e;
+    node *newnode=(node*)malloc(sizeof(node));
+    cout<<"Element To Insert: ";
+    cin>>e;
+    newnode->value=e;
+    if(top==NULL)
+        newnode->next=NULL;
+    else
+    newnode->next=top;
+    top=newnode;
+}
+void deletee()
+{
+    if(top==NULL)
+        cout<<"Stack Is Empty"<<endl;
+    else
+    {
+        node *temp=top;
+        top=top->next;
+        delete(temp);
+    }
+}
+void display()
+{
+    if(top==NULL)
+        cout<<"Stack Is Empty"<<endl;
+    else
+    {
+        node *temp=top;
+        while(temp!=NULL)
+        {
+            cout<<temp->value<<endl;
+            temp=temp->next;
+        }
+    }
+}
+int main()
+{
+    int ch;
+    while(1)
+    {
+        cout<<endl<<"1.Insert"<<endl;
+        cout<<"2.Delete"<<endl;
+        cout<<"3.Display"<<endl;
+        cout<<"Enter Choice: ";
+        cin>>ch;
+        if(ch==1)
+            inserte();
+        else
+            if(ch==2)
+            deletee();
+        else
+            if(ch==3)
+            display();
+        else
+            return 0;
+    }
+    return 0;
+}
