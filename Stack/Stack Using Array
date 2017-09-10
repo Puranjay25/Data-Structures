@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+int top=0;
+int a[100];
+void push(int a1[],int s1)
+{
+    if(top==s1-1)
+        cout<<"STACK IS FULL"<<endl;
+    else
+    {
+        int e;
+        cout<<"Element to be pushed: ";
+        cin>>e;
+        a1[top]=e;
+        top++;
+    }
+}
+void pop(int a2[],int s2)
+{
+    int garbage;
+    if(top==0)
+        cout<<"NO ELEMENT TO BE DELETED"<<endl;
+    else
+    {
+        garbage=a2[top];
+        top--;
+    }
+}
+void display(int a3[])
+{
+    int temp=top-1,i;
+    while(temp>=0)
+    {
+       cout<<a3[temp]<<endl;
+       temp--;
+    }
+}
+int main()
+{
+    int s,ch;
+    cout<<"Size of Stack: ";
+    cin>>s;
+    while(1)
+    {
+        cout<<endl<<endl;
+        cout<<"1.Push an element"<<endl;
+        cout<<"2.Pop an element"<<endl;
+        cout<<"3.Display full stack"<<endl;
+        cout<<"4.Exit"<<endl;
+        cout<<"Enter choice: ";
+        cin>>ch;
+        if(ch==1)
+            push(a,s);
+        else
+            if(ch==2)
+            pop(a,s);
+        else
+            if(ch==3)
+            display(a);
+        else
+            return 0;
+    }
+return 0;
+}
