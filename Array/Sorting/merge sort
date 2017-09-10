@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+void merge_sort(int [],int,int);
+void merg(int [],int,int,int);
+int main()
+{
+    int n;
+    cout<<"Size of array: ";
+    cin>>n;
+    int a[n],i;
+    for(i=0;i<n;i++)
+        cin>>a[i];
+    merge_sort(a,0,n-1);
+    for(i=0;i<n;i++)
+        cout<<a[i]<<" ";
+    return 0;
+}
+void merge_sort(int x[],int low,int high)
+{
+    int mid;
+    if(high!=low)
+    {
+      mid=(high+low)/2;
+      merge_sort(x,low,mid);
+      merge_sort(x,mid+1,high);
+      merg(x,low,mid,high);
+    }
+}
+void merg(int x1[],int low1,int mid1,int high1)
+{
+    int d=high1-low1+1;
+    int p[d],i,k=0,c=0,j;
+    for(i=low1,j=mid1+1;i!=mid1+1,j!=high1+1,k<d;c++)
+    {
+        if(i!=mid1+1&&j!=high1+1)
+        {
+            if(x1[i]<x1[j])
+            p[k++]=x1[i++];
+            else
+            p[k++]=x1[j++];
+        }
+        else
+            if(i!=mid1+1)
+            p[k++]=x1[i++];
+        else
+            if(j!=high1+1)
+            p[k++]=x1[j++];
+        else
+            break;
+    }
+    i=low1;
+    for(k=0;k<c;k++,i++)
+     {
+         x1[i]=p[k];
+     }
+}
