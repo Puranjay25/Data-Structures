@@ -1,0 +1,167 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct node
+{
+    int value;
+    node *next;
+    node *prev;
+}*start=NULL;
+void insert_begin()
+{
+    int v;
+    node *newnode=(node*)malloc(sizeof(node));
+    cout<<"Enter Value To Insert: ";
+    cin>>v;
+    newnode->value=v;
+    if(start==NULL)
+    {
+        newnode->next=NULL;
+        newnode->prev=NULL;
+    }
+    else
+    {
+        newnode->next=start;
+        newnode->prev=NULL;
+        start->prev=newnode;
+    }
+    start=newnode;
+}
+void insert_end()
+{
+    int v;
+    node *newnode=(node*)malloc(sizeof(node));
+    cout<<"Enter Value To Insert: ";
+    cin>>v;
+    node *temp=start;
+    while(temp->next!=NULL)
+        temp=temp->next;
+    temp->next=newnode;
+    newnode->prev=temp;
+    newnode->value=v;
+    newnode->next=NULL;
+}
+void insert_middle()
+{
+    int location,i=1,v;
+    cout<<"Location You Want To Insert Node In: ";
+    cin>>location;
+    node *temp=start;
+    while(i<location-1&&temp->next!=NULL)
+    {
+        i++;
+        temp=temp->next;
+    }
+    node *newnode=(node*)malloc(sizeof(node));
+    cout<<"Value You Want To Insert: ";
+    cin>>v;
+    newnode->value=v;
+    node *temp1=temp;
+    temp1=temp1->next;
+    newnode->next=temp1;
+    temp1->prev=newnode;
+    newnode->prev=temp;
+    temp->next=newnode;
+}
+void delete_begin()
+{
+    if(start==NULL)
+        cout<<"UNDERFLOW"<<endl;
+    else
+    {
+        node *temp=start;
+        start=start->next;
+        start->prev=NULL;
+        delete(temp);
+    }
+}
+void delete_end()
+{
+    if(start==NULL)
+        cout<<"UNDERFLOW"<<endl;
+    else
+    {
+        node *temp=start;
+        node *prev;
+        while(temp->next!=NULL)
+        {
+            prev=temp;
+            temp=temp->next;
+        }
+        prev->next=NULL;
+        delete(temp);
+    }
+}
+void delete_middle()
+{
+    if(start==NULL)
+        cout<<"UNDERFLOW";
+    else
+    {
+        int location,i=1;
+        cout<<"Location From Where You Want To Delete Node: ";
+        cin>>location;
+        node *temp=start;
+        while(i<location-1&&temp->next!=NULL)
+        {
+            i++;
+            temp=temp->next;
+        }
+        node *temp1=temp;
+        temp1=temp1->next;
+        temp1=temp1->next;
+        temp->next=temp1;
+        temp1->prev=temp;
+    }
+}
+void display()
+{
+    node *temp=start;
+    while(temp!=NULL)
+    {
+        cout<<temp->value<<"<-";
+        temp=temp->next;
+    }
+    cout<<endl;
+    free(temp);
+}
+int main()
+{
+    int ch;
+    while(1)
+    {
+        cout<<endl<<"1.Insert At Beginning Of List"<<endl;
+        cout<<"2.Insert At End Of List"<<endl;
+        cout<<"3.Insert At Some Location"<<endl;
+        cout<<"4.Delete From Beginning Of List"<<endl;
+        cout<<"5.Delete From End Of List"<<endl;
+        cout<<"6.Delete From Some Location"<<endl;
+        cout<<"7.Display Entire List"<<endl;
+        cout<<"Enter Choice: ";
+        cin>>ch;
+        if(ch==1)
+            insert_begin();
+        else
+            if(ch==2)
+            insert_end();
+        else
+            if(ch==3)
+            insert_middle();
+        else
+            if(ch==4)
+            delete_begin();
+        else
+            if(ch==5)
+            delete_end();
+        else
+            if(ch==6)
+            delete_middle();
+        else
+            if(ch==7)
+            display();
+        else
+            return 0;
+
+    }
+    return 0;
+}
