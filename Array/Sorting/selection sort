@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cout<<"Size Of Array: ";
+    cin>>n;
+    int a[n],i,j,pos,small,temp,index,f;
+    cout<<"Elements Of Array: ";
+    for(i=0;i<n;i++)
+        cin>>a[i];
+    for(i=0;i<n-1;i++)
+    {
+        small=a[i];
+        pos=i;
+        for(j=i+1;j<n;j++)
+        {
+            if(a[j]<small)
+            {
+                small=a[j];
+                pos=j;
+                temp=a[i];
+                a[i]=a[pos];
+                a[pos]=temp;
+            }
+        }
+    }
+    cout<<"Sorted Array Is: ";
+    for(i=0;i<n;i++)
+        cout<<a[i]<<" ";
+    return 0;
+}
