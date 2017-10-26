@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+int fron=-1,rear=-1;
+void inserte(int a1[],int s1)
+{
+    int e;
+    if(rear==s1-1)
+        cout<<"Queue is full"<<endl;
+    else
+    {
+        cout<<"Element you want to insert: ";
+        cin>>e;
+        rear++;
+        a1[rear]=e;
+    }
+}
+void deletee(int a2[],int s2)
+{
+    if(fron==rear)
+    {
+        fron=rear=-1;
+        cout<<"Queue is empty"<<endl;
+    }
+    else
+    fron++;
+}
+void display(int a3[])
+{
+    if(fron==rear)
+        cout<<"Queue is empty"<<endl;
+    else
+    for(int i=fron+1;i<=rear;i++)
+        cout<<a3[i]<<"<-";
+    cout<<endl;
+}
+int main()
+{
+    int s,ch;
+    cout<<"Queue size: ";
+    cin>>s;
+    int a[s];
+    while(1)
+    {
+        cout<<endl;
+        cout<<"1.Insert"<<endl;
+        cout<<"2.Delete"<<endl;
+        cout<<"3.Display"<<endl;
+        cout<<"Enter choice: ";
+        cin>>ch;
+        if(ch==1)
+            inserte(a,s);
+        else
+            if(ch==2)
+            deletee(a,s);
+        else
+            if(ch==3)
+            display(a);
+        else
+            return 0;
+    }
+    return 0;
+}
