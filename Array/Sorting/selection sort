@@ -3,7 +3,7 @@ using namespace std;
 int main()
 {
     int n;
-    cout<<"Size Of Array: ";
+    cout<<"Size Of the Array: ";
     cin>>n;
     int a[n],i,j,pos,small,temp,index,f;
     cout<<"Elements Of Array: ";
